@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuenta Regresiva Gótica · Pesadilla antes de Navidad</title>
+      <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌕</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=IM+Fell+English:ital@0;1&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="moon"></div>
+
+  <h1 class="title">
+    ESTO ES HALLOWEEN
+    <span>Cuenta regresiva</span>
+  </h1>
+
+  <!-- Murciélagos -->
+  <div class="bat bat1">
+    <svg viewBox="0 0 64 32"><path d="M32 16c-4-6-12-10-20-8 4 2 6 6 4 10-6-2-10-8-8-14C4 8 0 16 0 16s8 2 14 0c-2 4 0 8 4 10-8 2-12 8-12 8s10-2 16-6c2 4 6 6 10 6s8-2 10-6c6 4 16 6 16 6s-4-6-12-8c4-2 6-6 4-10 6 2 14 0 14 0s-4-8-8-10c2 6-2 12-8 14-2-4 0-8 4-10-8-2-16 2-20 8z"/></svg>
+  </div>
+  <div class="bat bat2">
+    <svg viewBox="0 0 64 32"><path d="M32 16c-4-6-12-10-20-8 4 2 6 6 4 10-6-2-10-8-8-14C4 8 0 16 0 16s8 2 14 0c-2 4 0 8 4 10-8 2-12 8-12 8s10-2 16-6c2 4 6 6 10 6s8-2 10-6c6 4 16 6 16 6s-4-6-12-8c4-2 6-6 4-10 6 2 14 0 14 0s-4-8-8-10c2 6-2 12-8 14-2-4 0-8 4-10-8-2-16 2-20 8z"/></svg>
+  </div>
+  <div class="bat bat3">
+    <svg viewBox="0 0 64 32"><path d="M32 16c-4-6-12-10-20-8 4 2 6 6 4 10-6-2-10-8-8-14C4 8 0 16 0 16s8 2 14 0c-2 4 0 8 4 10-8 2-12 8-12 8s10-2 16-6c2 4 6 6 10 6s8-2 10-6c6 4 16 6 16 6s-4-6-12-8c4-2 6-6 4-10 6 2 14 0 14 0s-4-8-8-10c2 6-2 12-8 14-2-4 0-8 4-10-8-2-16 2-20 8z"/></svg>
+  </div>
+
+  <div class="wreath">
+
+    <!-- Las 12 bayas se generan con JS, una por cada mes -->
+
+    <div class="dial">
+      <div class="spiderweb">
+        <div class="web-line"></div>
+        <div class="web-line"></div>
+        <div class="web-line"></div>
+        <div class="web-line"></div>
+        <div class="circle"></div>
+        <div class="circle2"></div>
+      </div>
+
+      <div class="hand month" id="monthHand"></div>
+      <div class="hand day" id="dayHand"></div>
+    </div>
+
+  </div>
+
+  <div class="base">
+
+    <div class="counter">
+      <div class="digit" id="digit1">0</div>
+      <div class="digit" id="digit2">0</div>
+      <div class="digit" id="digit3">0</div>
+    </div>
+
+    <div class="plaque">
+      DÍAS PARA <span class="red">HALLOWEEN</span>
+    </div>
+
+  </div>
+
+  <p class="footer">« ¿Qué es? ¿Qué es? »</p>
+
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
