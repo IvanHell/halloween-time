@@ -415,6 +415,25 @@ body::after {
     inset -8px -5px 15px rgba(0,0,0,0.3);
   opacity: 0.5;
   z-index: 1;
+  
+}
+
+.moon-halo {
+  position: relative;
+  top: -10px;
+  right: 10px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(239, 180, 60, 0.701) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: halo-pulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes halo-pulse {
+  0%   { transform: scale(1);    opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 1;   }
 }
 
 /* Footer pequeño */
