@@ -350,6 +350,47 @@ body::after {
   pointer-events: none;
 }
 
+/* Modo HOY — solo el 31 de octubre */
+.digit.hoy {
+  color: var(--blood-bright);
+  font-family: 'Creepster', cursive;
+  font-size: 52px;
+  letter-spacing: 0;
+  text-shadow:
+    0 0 8px rgba(196, 30, 58, 0.9),
+    0 0 20px rgba(196, 30, 58, 0.6),
+    2px 2px 0 #400;
+  background:
+    linear-gradient(180deg, #3a1a1a 0%, #2a0a0a 50%, #1a0505 100%);
+  border-color: #5a1a1a;
+  animation: hoy-pulse 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes hoy-pulse {
+  0% {
+    text-shadow:
+      0 0 8px rgba(196, 30, 58, 0.7),
+      0 0 20px rgba(196, 30, 58, 0.4),
+      2px 2px 0 #400;
+    box-shadow:
+      inset 0 2px 8px rgba(0,0,0,0.6),
+      0 6px 0 #0a0a10,
+      0 8px 15px rgba(0,0,0,0.5),
+      0 0 15px rgba(196, 30, 58, 0.3);
+  }
+  100% {
+    text-shadow:
+      0 0 14px rgba(196, 30, 58, 1),
+      0 0 30px rgba(196, 30, 58, 0.7),
+      2px 2px 0 #400;
+    box-shadow:
+      inset 0 2px 8px rgba(0,0,0,0.6),
+      0 6px 0 #0a0a10,
+      0 8px 15px rgba(0,0,0,0.5),
+      0 0 30px rgba(196, 30, 58, 0.6);
+  }
+}
+
 .plaque {
   background: 
     linear-gradient(180deg, #3a3a48 0%, #2a2a35 40%, #1e1e28 100%);
@@ -401,40 +442,53 @@ body::after {
   50% { transform: translateY(-12px) rotate(-5deg); }
 }
 
-/* Luna decorativa sutil */
+
+
+/* Contenedor de la luna: posición relativa para apilar SVG */
 .moon {
   position: absolute;
-  top: -10px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #e8e0d0, #a8a090);
-  box-shadow: 
-    0 0 20px rgba(232, 224, 208, 0.25),
-    inset -8px -5px 15px rgba(0,0,0,0.3);
-  opacity: 0.5;
+  top: -40px;
+  right: 5px;
+  width: 95px;
+  height: 95px;
   z-index: 1;
-  
+  opacity: 0.85;
+  filter: drop-shadow(0 0 18px rgba(232, 224, 208, 0.45))
+          drop-shadow(0 0 40px rgba(180, 160, 200, 0.25));
+  animation: moon-glow 6s ease-in-out infinite alternate;
 }
 
-.moon-halo {
-  position: relative;
-  top: -10px;
-  right: 10px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(239, 180, 60, 0.701) 0%, transparent 70%);
+.moon svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* La cara está oculta por defecto */
+.moon-face {
+  opacity: 0;
   pointer-events: none;
-  z-index: 0;
-  animation: halo-pulse 8s ease-in-out infinite alternate;
+  transition: opacity 1.2s ease-in;
+  /* Escala desde el centro para que "crezca" al aparecer */
+  transform-origin: center;
+  transform: scale(0.85);
+  transition: opacity 1.2s ease-in, transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes halo-pulse {
-  0%   { transform: scale(1);    opacity: 0.6; }
-  100% { transform: scale(1.5); opacity: 1;   }
+/* Solo el 31 de octubre */
+body.is-halloween .moon {
+  opacity: 1;
+  filter: drop-shadow(0 0 30px rgba(232, 224, 208, 0.85))
+          drop-shadow(0 0 60px rgba(196, 30, 58, 0.5));
 }
+
+body.is-halloween .moon-face {
+  opacity: 1;
+  transform: scale(1);
+}
+
 
 /* Footer pequeño */
 .footer {
@@ -451,4 +505,49 @@ body::after {
   .title { font-size: 1.5rem; }
   .digit { width: 48px; height: 60px; font-size: 38px; }
   .plaque { font-size: 1.3rem; }
+}
+
+
+/* El cuerpo entero reacciona en Halloween */
+body.is-halloween .plaque {
+  border-color: var(--blood-bright);
+  box-shadow:
+    0 5px 0 #12121a,
+    0 8px 20px rgba(0,0,0,0.5),
+    0 0 25px rgba(196, 30, 58, 0.4),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+body.is-halloween .title {
+  text-shadow:
+    2px 2px 0 #000,
+    -1px -1px 0 var(--blood-bright),
+    0 0 30px rgba(181, 18, 27, 0.7);
+}
+
+body.is-halloween::after {
+  background: linear-gradient(to top, rgba(60,10,20,0.8), transparent);
+}
+
+/* Los murciélagos se ponen más activos */
+body.is-halloween .bat {
+  opacity: 0.75;
+  filter: drop-shadow(0 0 10px rgba(196, 30, 58, 0.7));
+}
+
+/* La luna brilla más */
+body.is-halloween .moon {
+  opacity: 1;
+  filter: drop-shadow(0 0 30px rgba(232, 224, 208, 0.8))
+          drop-shadow(0 0 60px rgba(196, 30, 58, 0.4));
+}
+
+@keyframes moon-laugh {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(2deg); }
+}
+
+body.is-halloween .moon {
+  animation: moon-glow 6s ease-in-out infinite alternate,
+             moon-laugh 4s ease-in-out infinite;
 }

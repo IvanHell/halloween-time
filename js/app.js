@@ -54,40 +54,65 @@
     wreath.appendChild(berry);
   }
 
-  function updateClock() {
-    const now = new Date();
-    const currentYear = now.getFullYear();
-    
-    let halloween = new Date(currentYear, 9, 31);
-    if (now > halloween) {
-      halloween = new Date(currentYear + 1, 9, 31);
-    }
+function updateClock() {
+  const now = new Date();
+  const currentYear = now.getFullYear();
 
-    const diffMs = halloween - now;
-    const daysLeft = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+  // ¿Hoy es 31 de octubre?
+  const isHalloween = now.getMonth() === 9 && now.getDate() === 31; //esta es la fecha esperada (31)
 
-    const daysStr = daysLeft.toString().padStart(3, '0');
-    document.getElementById('digit1').textContent = daysStr[0];
-    document.getElementById('digit2').textContent = daysStr[1];
-    document.getElementById('digit3').textContent = daysStr[2];
+  // Halloween empieza a medianoche del 31
+  let halloween = new Date(currentYear, 9, 31, 0, 0, 0, 0);
 
-    // Manecilla del mes
-    const currentMonth = now.getMonth();
-    const monthBaseAngle = monthAngleOffset + (currentMonth - 9) * angleStep;
-    
-    const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-    const dayOfMonth = now.getDate();
-    const monthProgress = (dayOfMonth - 1) / daysInMonth;
-    const extraAngle = monthProgress * angleStep;
-
-    const monthAngle = monthBaseAngle + extraAngle;
-    document.getElementById('monthHand').style.transform = `rotate(${monthAngle}deg)`;
-
-    // Manecilla de días
-    const dayMod = daysLeft % 31;
-    const dayAngle = ((31 - dayMod) / 31) * 360;
-    document.getElementById('dayHand').style.transform = `rotate(${dayAngle}deg)`;
+  // Solo pasamos al año siguiente cuando el 31 ya terminó por completo
+  const halloweenEnd = new Date(currentYear, 9, 31, 23, 59, 59, 999);
+  if (now > halloweenEnd) {
+    halloween = new Date(currentYear + 1, 9, 31, 0, 0, 0, 0);
   }
+
+  const diffMs = halloween - now;
+  const daysLeft = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+
+  const digit1 = document.getElementById('digit1');
+  const digit2 = document.getElementById('digit2');
+  const digit3 = document.getElementById('digit3');
+
+  if (isHalloween) {
+    // Modo HOY
+    digit1.textContent = 'H';
+    digit2.textContent = 'O';
+    digit3.textContent = 'Y';
+    digit1.classList.add('hoy');
+    digit2.classList.add('hoy');
+    digit3.classList.add('hoy');
+    document.body.classList.add('is-halloween');
+  } else {
+    // Modo cuenta regresiva
+    const daysStr = daysLeft.toString().padStart(3, '0');
+    digit1.textContent = daysStr[0];
+    digit2.textContent = daysStr[1];
+    digit3.textContent = daysStr[2];
+    digit1.classList.remove('hoy');
+    digit2.classList.remove('hoy');
+    digit3.classList.remove('hoy');
+    document.body.classList.remove('is-halloween');
+  }
+
+  // Manecilla del mes
+  const currentMonth = now.getMonth();
+  const monthBaseAngle = monthAngleOffset + (currentMonth - 9) * angleStep;
+  const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  const dayOfMonth = now.getDate();
+  const monthProgress = (dayOfMonth - 1) / daysInMonth;
+  const extraAngle = monthProgress * angleStep;
+  const monthAngle = monthBaseAngle + extraAngle;
+  document.getElementById('monthHand').style.transform = `rotate(${monthAngle}deg)`;
+
+  // Manecilla de días
+  const dayMod = daysLeft % 31;
+  const dayAngle = ((31 - dayMod) / 31) * 360;
+  document.getElementById('dayHand').style.transform = `rotate(${dayAngle}deg)`;
+}
 
   updateClock();
   setInterval(updateClock, 60000);
