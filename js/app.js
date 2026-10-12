@@ -59,7 +59,7 @@ function updateClock() {
   const currentYear = now.getFullYear();
 
   // ¿Hoy es 31 de octubre?
-  const isHalloween = now.getMonth() === 9 && now.getDate() === 31; //esta es la fecha esperada (31)
+  const isHalloween = now.getMonth() === 9 && now.getDate() === 12; //esta es la fecha esperada (31)
 
   // Halloween empieza a medianoche del 31
   let halloween = new Date(currentYear, 9, 31, 0, 0, 0, 0);
