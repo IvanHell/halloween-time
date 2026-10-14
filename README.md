@@ -6,7 +6,7 @@ Hecha con HTML, CSS y JavaScript puro. Sin frameworks, sin dependencias externas
 
 ---
 
-## ✨ Características
+##  Características
 
 - **Cuenta regresiva** al 31 de octubre con dígitos en modo "HOY" cuando llega el día.
 - **Reloj temático** en forma de corona: manecilla del mes y manecilla de días restantes.
