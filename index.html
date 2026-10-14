@@ -87,6 +87,29 @@
 
   </div>
 
+
+  <!-- Reproductor de audio propio — solo aparece el 31 de octubre -->
+<div class="audio-player" id="audioPlayer">
+  <button class="audio-close" id="audioClose" aria-label="Silenciar">✕</button>
+
+  <audio id="halloweenSong" src="audio/halloween.mp3" loop preload="none"></audio>
+
+  <button class="audio-facade" id="audioFacade" aria-label="Reproducir música de Halloween">
+    <span class="audio-play">▶</span>
+    <span class="audio-text">Pulsa para despertar la canción</span>
+  </button>
+
+  <div class="audio-playing" id="audioPlaying">
+    <span class="audio-bar"></span>
+    <span class="audio-bar"></span>
+    <span class="audio-bar"></span>
+    <span class="audio-bar"></span>
+    <span class="audio-bar"></span>
+    <span class="audio-label">🎃 Sonando…</span>
+  </div>
+</div>
+
+
   <p class="footer">« ¿Qué es? ¿Qué es? »</p>
 
 </div>

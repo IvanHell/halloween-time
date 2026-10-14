@@ -1,3 +1,77 @@
+
+// ============================================================
+// Reproductor de audio propio — solo el 31 de octubre
+// ============================================================
+
+let audioActivo = false;
+
+function activarAudio() {
+  if (audioActivo) return;
+  audioActivo = true;
+
+  const player = document.getElementById('audioPlayer');
+  const song   = document.getElementById('halloweenSong');
+  if (!player || !song) return;
+
+  player.classList.add('visible');
+
+  // Intentar autoplay (puede ser bloqueado por el navegador)
+  const intento = song.play();
+  if (intento !== undefined) {
+    intento
+      .then(() => marcarSonando(true))
+      .catch(() => marcarSonando(false));
+  }
+}
+
+function desactivarAudio() {
+  if (!audioActivo) return;
+  audioActivo = false;
+
+  const player = document.getElementById('audioPlayer');
+  const song   = document.getElementById('halloweenSong');
+  if (!player || !song) return;
+
+  song.pause();
+  song.currentTime = 0;
+  player.classList.remove('visible');
+  marcarSonando(false);
+}
+
+function marcarSonando(sonando) {
+  const facade  = document.getElementById('audioFacade');
+  const playing = document.getElementById('audioPlaying');
+  if (!facade || !playing) return;
+
+  facade.style.display  = sonando ? 'none' : 'flex';
+  playing.style.display = sonando ? 'flex' : 'none';
+}
+
+// Listeners (se registran una sola vez, cuando el DOM esté listo)
+document.addEventListener('DOMContentLoaded', () => {
+  const facade   = document.getElementById('audioFacade');
+  const song     = document.getElementById('halloweenSong');
+  const closeBtn = document.getElementById('audioClose');
+  const player   = document.getElementById('audioPlayer');
+
+  if (facade && song) {
+    facade.addEventListener('click', () => {
+      song.play()
+        .then(() => marcarSonando(true))
+        .catch(err => console.warn('No se pudo reproducir:', err));
+    });
+  }
+
+  if (closeBtn && player && song) {
+    closeBtn.addEventListener('click', () => {
+      song.pause();
+      player.classList.remove('visible');
+      audioActivo = false;
+      marcarSonando(false);
+    });
+  }
+});
+
 (function() {
   const monthNames = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
   
@@ -60,6 +134,8 @@ function updateClock() {
 
   // ¿Hoy es 31 de octubre?
   const isHalloween = now.getMonth() === 9 && now.getDate() === 31; //esta es la fecha esperada (31)
+  //const isHalloween = true
+
 
   // Halloween empieza a medianoche del 31
   let halloween = new Date(currentYear, 9, 31, 0, 0, 0, 0);
@@ -86,6 +162,9 @@ function updateClock() {
     digit2.classList.add('hoy');
     digit3.classList.add('hoy');
     document.body.classList.add('is-halloween');
+
+    activarAudio();
+
   } else {
     // Modo cuenta regresiva
     const daysStr = daysLeft.toString().padStart(3, '0');
@@ -96,6 +175,9 @@ function updateClock() {
     digit2.classList.remove('hoy');
     digit3.classList.remove('hoy');
     document.body.classList.remove('is-halloween');
+
+    desactivarAudio();
+
   }
 
   // Manecilla del mes
