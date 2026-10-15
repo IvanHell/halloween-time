@@ -6,12 +6,10 @@ Hecha con HTML, CSS y JavaScript puro. Sin frameworks, sin dependencias externas
 
 ---
 
-##  Características
+## 🎃 Características
 
-- **Cuenta regresiva** al 31 de octubre con dígitos en modo "HOY" cuando llega el día.
-- **Reloj temático** en forma de corona: manecilla del mes y manecilla de días restantes.
-- **Luna con cara de Jack** que aparece solo el 31 de octubre.
+- **Cuenta regresiva** al 31 de octubre con dígitos con una sopresa al finalizar el conteo.
+- **Reloj temático** inspirado en la pelicula: manecilla del mes y manecilla de días restantes.
 - **Murciélagos animados**, estrellas centelleantes y telarañas decorativas.
-- **Reproductor de audio flotante** con la canción sorpresa, que aparece el día señalado.
-- **Diseño responsive** adaptado a móvil, tablet y escritorio.
+- **Diseño adaptado** adaptado a móvil, tablet y escritorio.
 - Funciona abriendo el archivo directamente o desde un servidor local.
